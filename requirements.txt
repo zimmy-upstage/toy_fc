@@ -2,7 +2,6 @@ langchain>=0.3.0
 langchain-upstage>=0.3.0
 solar-as-judge>=0.2.0
 langchain-community
-duckduckgo-search
 streamlit
 langchain-groq
 pandas
@@ -11,3 +10,5 @@ networkx
 pyvis
 watchdog
 tenacity
+
+duckduckgo-search

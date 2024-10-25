@@ -3,11 +3,9 @@ import pandas as pd
 import networkx as nx
 import json
 from pyvis.network import Network
-from typing import Optional, Dict, Union, List, Any
+from typing import Optional, Dict, Union
+from claim import extracted_claimed_facts
 from fc import (
-    extracted_claimed_facts,
-    search_context,
-    build_kg,
     verify_facts,
     add_fact_check_to_text,
     Chat,
@@ -16,7 +14,9 @@ from fc import (
 )
 import re
 import io
-import tempfile
+
+from kg import build_kg
+from search import search_context
 
 st.set_page_config(page_title="Fact Checker", page_icon="🔍", layout="wide")
 
@@ -99,7 +99,7 @@ def fc_streamlitet(
     llm: Optional[Chat] = None,
 ) -> Dict[str, Dict[str, Union[str, float]]]:
     st.write("--- Starting Fact Checking Process ---")
-    st.write(f"Input text: {text}")
+    # st.write(f"Input text: {text}")
 
     if llm is None:
         llm = Chat(model=MODEL_NAME)

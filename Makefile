@@ -13,7 +13,7 @@ $(VENV)/bin/activate: requirements.txt
 	$(PIP) install -r requirements.txt
 
 
-app: $(VENV)/bin/activate
+app: 
 	$(STREAMLIT) run app.py
 
 fc: $(VENV)/bin/activate

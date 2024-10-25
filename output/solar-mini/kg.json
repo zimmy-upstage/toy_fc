@@ -1,0 +1,66 @@
+{
+    "Solar Mini": {
+        "architecture": {
+            "value": "32-layer Llama 2 structure",
+            "source": "The foundational architecture of Solar Mini is based on a 32-layer Llama 2 structure"
+        },
+        "pre-trained_weights": {
+            "value": "Mistral 7B",
+            "source": "and is initialized with pre-trained weights from Mistral 7B"
+        },
+        "size": {
+            "value": "under 30B",
+            "source": "The best model you\u2019ll find under 30B"
+        },
+        "comparison_with_gpt_4": {
+            "value": "surpassed",
+            "source": "Solar Mini became the undisputed leader of all AI models on Hugging Face, surpassing every major model including GPT-4."
+        },
+        "comparison_with_gpt_3_5": {
+            "value": "better responses",
+            "source": "Using notably fewer parameters, Solar Mini delivers better responses than GPT-3.5"
+        },
+        "speed_comparison_with_gpt_3_5": {
+            "value": "5 times faster",
+            "source": "and is at least 5 times faster"
+        },
+        "comparison_with_llama2": {
+            "value": "outperformed",
+            "source": "Solar Mini consistently outperformed every competitor like Llama2"
+        },
+        "comparison_with_mistral_7b": {
+            "value": "outperformed",
+            "source": "Solar Mini consistently outperformed every competitor like Mistral 7B"
+        },
+        "comparison_with_ko_alpaca": {
+            "value": "outperformed",
+            "source": "Solar Mini consistently outperformed every competitor like Ko-Alpaca"
+        },
+        "comparison_with_kullm": {
+            "value": "outperformed",
+            "source": "Solar Mini consistently outperformed every competitor like KULLM"
+        },
+        "optimization_for_rag_systems": {
+            "value": "optimized",
+            "source": "Solar Mini is perfectly optimized for all RAG systems"
+        },
+        "public_availability": {
+            "value": "publicly available",
+            "source": "Solar Mini is publicly available"
+        },
+        "license": {
+            "value": "Apache 2.0",
+            "source": "under Apache 2.0 license"
+        }
+    },
+    "Depth Up-scaling (DUS)": {
+        "method": {
+            "value": "scaling LLMs",
+            "source": "How did Solar Mini Solar Mini stay compact, yet become remarkably ..., title: Introducing Solar Mini : Compact yet Powerful \u2014 Upstage, link: https://www.upstage.ai/feed/product/solarmini-performance-report"
+        },
+        "components": {
+            "value": "depthwise scaling and continued pretraining",
+            "source": "Inspired by recent efforts to efficiently up-scale LLMs, we present a method for scaling LLMs called depth up-scaling (DUS), which encompasses depthwise scaling and continued pretraining."
+        }
+    }
+}

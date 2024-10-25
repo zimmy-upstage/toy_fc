@@ -1,0 +1,52 @@
+{
+    "Fine-tuning": {
+        "definition": {
+            "value": "adapting a pre-trained language model to perform specific tasks or align with particular requirements",
+            "source": "Claimed Facts (use only as schema hints): Fine-tuning is adapting a pre-trained language model to perform specific tasks or align with particular requirements."
+        },
+        "comparison": {
+            "value": "a comparison of fine-tuning methodologies, including supervised, unsupervised, and instruction-based approaches",
+            "source": "Context: snippet: This report examines the fine-tuning of Large Language Models (LLMs), integrating theoretical insights with practical applications. It outlines the historical evolution of LLMs from traditional Natural Language Processing (NLP) models to their pivotal role in AI. A comparison of fine-tuning methodologies, including supervised, unsupervised, and instruction-based approaches, highlights their ..."
+        }
+    },
+    "Pre-trained Models": {
+        "understanding_language": {
+            "value": "generally understand language",
+            "source": "Claimed Facts (use only as schema hints): While pre-trained models generally understand language, they lack task-oriented skills such as Question and Answering(QA)."
+        },
+        "lack_of_task_oriented_skills": {
+            "value": "lack task-oriented skills such as Question and Answering(QA)",
+            "source": "Claimed Facts (use only as schema hints): While pre-trained models generally understand language, they lack task-oriented skills such as Question and Answering(QA)."
+        }
+    },
+    "Fine-tuned Models": {
+        "improvement": {
+            "value": "improve customer support, content creation, and more",
+            "source": "Context: snippet: Here Are Five LLM Fine-Tuning Strategies. ... Discover how fine-tuning Large Language Models (LLMs) through instruction and alignment tuning can transform AI into task-specific tools. ..."
+        }
+    },
+    "Instruction Tuning": {
+        "definition": {
+            "value": "teaching LLMs to understand and execute specific instructions",
+            "source": "Claimed Facts (use only as schema hints): Instruction tuning focuses on teaching LLMs to understand and execute specific instructions."
+        },
+        "comparison_to_teaching": {
+            "value": "akin to teaching the model new skills that it can apply in different scenarios",
+            "source": "Claimed Facts (use only as schema hints): Instruction tuning focuses on teaching LLMs to understand and execute specific instructions. ... Instruction tuning is akin to teaching the model new skills that it can apply in different scenarios."
+        },
+        "training": {
+            "value": "training the model to follow tasks described in natural language",
+            "source": "Claimed Facts (use only as schema hints): Instruction tuning focuses on teaching LLMs to understand and execute specific instructions. ..."
+        }
+    },
+    "Alignment Tuning": {
+        "definition": {
+            "value": "training a model to follow tasks described in natural language",
+            "source": "Claimed Facts (use only as schema hints): Alignment tuning ensures that a model\u2019s outputs align with human values and preferences."
+        },
+        "importance": {
+            "value": "particularly crucial in applications where the quality of interactions is paramount, such as customer service or content creation",
+            "source": "Claimed Facts (use only as schema hints): Alignment tuning ensures that a model\u2019s outputs align with human values and preferences. ..."
+        }
+    }
+}

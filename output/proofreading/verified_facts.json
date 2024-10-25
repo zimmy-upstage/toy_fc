@@ -1,0 +1,80 @@
+[
+    {
+        "claimed": "Having raised over $200 million since their founding in 2020, they are by far the most-funded tech company in South Korean history.",
+        "Rating": "FALSE",
+        "confidence": "1.0",
+        "explanation": "The knowledge graph does not provide any information about Upstage's funding history or comparison to other South Korean tech companies, making the claim inaccurate."
+    },
+    {
+        "claimed": "They have customized their flagship LLM\u2013Solar\u2013to be superior to GPT-4 and all other large models in every aspect, including accuracy, speed, and cost effectiveness.",
+        "Rating": "FALSE",
+        "confidence": "0.9",
+        "explanation": "The knowledge graph only mentions that Upstage is an AI company specializing in building powerful LLMs, but it does not provide any information about their flagship LLM-Solar or its comparison to GPT-4 or other large models in terms of accuracy, speed, and cost-effectiveness. Therefore, the claim cannot be verified as true."
+    },
+    {
+        "claimed": "A major international media company was struggling under the weight of proofreading over 60 articles per day.",
+        "Rating": "FALSE",
+        "confidence": "1.0",
+        "explanation": "The knowledge graph does not mention any media company or proofreading tasks. It only describes Upstage as an AI company specializing in LLMs for enterprises."
+    },
+    {
+        "claimed": "The media company experimented with using popular LLMs such as OpenAI\u2019s models to meet their proofreading needs and they could not accurately pinpoint errors and were prohibitively expensive at scale.",
+        "Rating": "FALSE",
+        "confidence": 0.95,
+        "explanation": "The provided knowledge graph does not mention the media company, nor does it discuss their experimentation with LLMs, proofreading needs, or the accuracy and cost issues claimed. The graph only references Upstage's expertise in building LLMs."
+    },
+    {
+        "claimed": "Solar-Proofread outperformed both the base and a fine-tuned version of GPT-4o mini on edit suggestion correctness.",
+        "Rating": "FALSE",
+        "confidence": 1.0,
+        "explanation": "The knowledge graph does not provide any information about Solar-Proofread, GPT-4o mini, or their performance comparison. The claim is inaccurate and unsubstantiated based on the provided data."
+    },
+    {
+        "claimed": "Solar-Proofread was 79% accurate in identifying errors, compared to the fine-tuned GPT-4o mini model (71%) and the GPT-4o mini base model (25%).",
+        "Rating": "FALSE",
+        "confidence": 1.0,
+        "explanation": "The knowledge graph and context do not provide any information about Solar-Proofread, its accuracy, or comparisons with any GPT-4o mini models. Therefore, the claim cannot be verified and is considered false."
+    },
+    {
+        "claimed": "Solar-Proofread saw the fewest false positives and missing corrections.",
+        "Rating": "FALSE",
+        "confidence": 1.0,
+        "explanation": "The provided knowledge graph and context do not contain any information about Solar-Proofread, its false positives, or missing corrections. Therefore, the claim cannot be verified as true."
+    },
+    {
+        "claimed": "Solar-Proofread saw the fewest redundant corrections.",
+        "Rating": "FALSE",
+        "confidence": 1.0,
+        "explanation": "The knowledge graph does not provide any information about Solar-Proofread or redundant corrections, making the claim inaccurate."
+    },
+    {
+        "claimed": "With the help of Solar-Proofread, the media company completely automated their proofreading process, allowing them to reallocate valuable resources to creating new content and lowering their operational costs in the process.",
+        "Rating": "FALSE",
+        "confidence": 1.0,
+        "explanation": "The provided knowledge graph does not contain any information about Solar-Proofread, the media company, or the automation of their proofreading process. The graph only provides information about Upstage, an AI company specializing in building LLMs. Therefore, the claim cannot be verified as accurate."
+    },
+    {
+        "claimed": "Large, off-the-shelf LLMs like GPT-4 and Claude 3.5 Sonnet are completely unsuitable for any enterprise use due to the high cost, long deployment time, and lack of domain and task-specific knowledge.",
+        "Rating": "MOSTLY FALSE",
+        "confidence": "0.8",
+        "explanation": "The claim overlooks the existence of companies like Upstage that specialize in building powerful LLMs for enterprises, suggesting that large LLMs can be suitable for enterprise use. However, the claim may still hold true for some general-purpose LLMs, and the provided knowledge graph does not directly address the other aspects of the claim, such as cost and deployment time."
+    },
+    {
+        "claimed": "Upstage is South Korea's most successful AI company, providing state-of-the-art enterprise AI and LLM solutions to thousands of customers like Samsung, AIA, Hyundai, and many more.",
+        "Rating": "HALF TRUE",
+        "confidence": "0.70",
+        "explanation": "While Upstage is a successful AI company providing LLM solutions to notable clients like Samsung, the knowledge graph does not provide information comparing Upstage's success to other AI companies in South Korea, making the claim 'most successful' only partially true."
+    },
+    {
+        "claimed": "Upstage used Predibase to demonstrate that fine-tuning their Solar-Mini model could create a model designed to accurately catch typos and grammatical errors that even the most dedicated human might overlook.",
+        "Rating": "MOSTLY TRUE",
+        "confidence": "0.8",
+        "explanation": "The claim is mostly true, as Upstage is confirmed to use Predibase for fine-tuning their proprietary model. However, the specific purpose of catching typos and grammatical errors, and the comparison to human performance, are not explicitly mentioned in the knowledge graph."
+    },
+    {
+        "claimed": "Solar-Mini is Upstage\u2019s SLM that delivers responses comparable to GPT-3.5, but 2.5 times faster.",
+        "Rating": "MOSTLY TRUE",
+        "confidence": "0.7",
+        "explanation": "The knowledge graph states that Upstage specializes in building powerful LLMs, which aligns with the claim about Solar-Mini being an SLM comparable to GPT-3.5. However, the knowledge graph does not provide information about Solar-Mini's speed, making it impossible to verify the 2.5 times faster claim."
+    }
+]

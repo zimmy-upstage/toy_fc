@@ -1,0 +1,72 @@
+[
+    {
+        "statement": "Solar Mini became the undisputed leader of all AI models on Hugging Face, surpassing every major model including GPT-4.",
+        "tags": [
+            "Verifiable",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "Solar Mini consistently outperformed every competitor like Llama2, Mistral 7B, Ko-Alpaca, and KULLM in all benchmarks by a wide margin.",
+        "tags": [
+            "Misleading",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "DUS allows for a much more straightforward and efficient enlargement of smaller models than other scaling methods such as mixture-of-experts.",
+        "tags": [
+            "Misleading",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "Solar Mini is perfectly optimized for all RAG systems and always provides the most accurate responses.",
+        "tags": [
+            "Misleading",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "The best model you\u2019ll find under 30B",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Using notably fewer parameters, Solar Mini delivers better responses than GPT-3.5 and is at least 5 times faster.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "The foundational architecture of Solar Mini is based on a 32-layer Llama 2 structure, and is initialized with pre-trained weights from Mistral 7B, one of the best-performing models compatible with the Llama 2 architecture.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Our scaling method \u2018depth up-scaling\u2019 (DUS) consists of depthwise scaling and continued pretraining.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Continued Pre-training",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "After depth up scaling, the model performs worse than the base LLM.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Solar Mini is publicly available under Apache 2.0 license.",
+        "tags": [
+            "Verifiable"
+        ]
+    }
+]

@@ -1,0 +1,64 @@
+[
+    {
+        "statement": "On the other hand, fine-tuned models are always perfect at tasks like answering customer queries and generating marketing content, outperforming other methods every time.",
+        "tags": [
+            "Misleading",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "Alignment tuning guarantees that models perfectly reflect human values and preferences in every scenario.",
+        "tags": [
+            "Misleading",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "Fine-tuning is adapting a pre-trained language model to perform specific tasks or align with particular requirements.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "While pre-trained models generally understand language, they lack task-oriented skills such as Question and Answering(QA).",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Instruction tuning focuses on teaching LLMs to understand and execute specific instructions.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Instruction tuning is akin to teaching the model new skills that it can apply in different scenarios.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Instruction tuning involves training the model to follow tasks described in natural language, making it capable of handling various requests and commands.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Instruction tuning is akin to teaching the model new skills that it can apply in different scenarios.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Alignment tuning ensures that a model\u2019s outputs align with human values and preferences.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Alignment tuning is particularly crucial in applications where the quality of interactions is paramount, such as customer service or content creation.",
+        "tags": [
+            "Verifiable"
+        ]
+    }
+]

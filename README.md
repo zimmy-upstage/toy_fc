@@ -17,3 +17,10 @@ Created .env
 ```bash
 make app
 ```
+
+# Fixes
+
+If you encounter 202 Ratelimit Error when using DuckDuckGo Search, run the following command.
+```
+pip install --upgrade --quiet duckduckgo-search
+```

@@ -1,0 +1,82 @@
+[
+    {
+        "statement": "They have customized their flagship LLM\u2013Solar\u2013to be superior to GPT-4 and all other large models in every aspect, including accuracy, speed, and cost effectiveness.",
+        "tags": [
+            "Misleading",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "Large, off-the-shelf LLMs like GPT-4 and Claude 3.5 Sonnet are completely unsuitable for any enterprise use due to the high cost, long deployment time, and lack of domain and task-specific knowledge.",
+        "tags": [
+            "Misleading",
+            "Curiosity"
+        ]
+    },
+    {
+        "statement": "Upstage is South Korea's most successful AI company, providing state-of-the-art enterprise AI and LLM solutions to thousands of customers like Samsung, AIA, Hyundai, and many more.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Having raised over $200 million since their founding in 2020, they are by far the most-funded tech company in South Korean history.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "A major international media company was struggling under the weight of proofreading over 60 articles per day.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Upstage used Predibase to demonstrate that fine-tuning their Solar-Mini model could create a model designed to accurately catch typos and grammatical errors that even the most dedicated human might overlook.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "The media company experimented with using popular LLMs such as OpenAI\u2019s models to meet their proofreading needs and they could not accurately pinpoint errors and were prohibitively expensive at scale.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Solar-Mini is Upstage\u2019s SLM that delivers responses comparable to GPT-3.5, but 2.5 times faster.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Solar-Proofread outperformed both the base and a fine-tuned version of GPT-4o mini on edit suggestion correctness.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Solar-Proofread was 79% accurate in identifying errors, compared to the fine-tuned GPT-4o mini model (71%) and the GPT-4o mini base model (25%).",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Solar-Proofread saw the fewest false positives and missing corrections.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "Solar-Proofread saw the fewest redundant corrections.",
+        "tags": [
+            "Verifiable"
+        ]
+    },
+    {
+        "statement": "With the help of Solar-Proofread, the media company completely automated their proofreading process, allowing them to reallocate valuable resources to creating new content and lowering their operational costs in the process.",
+        "tags": [
+            "Verifiable"
+        ]
+    }
+]

@@ -1,0 +1,36 @@
+Background
+
+Upstage is South Korea's most successful AI company, providing state-of-the-art enterprise AI and LLM solutions to thousands of customers like Samsung, AIA, Hyundai, and many more. Having raised over $200 million since their founding in 2020, they are by far the most-funded tech company in South Korean history. They have customized their flagship LLM–Solar–to be superior to GPT-4 and all other large models in every aspect, including accuracy, speed, and cost effectiveness. 
+
+When a major international media company came to them, they were struggling under the weight of proofreading over 60 articles per day. 
+
+“They needed a way to create a more efficient, modern newsroom by handing over the repetitive, highly trainable task of proofreading,” said Sung Kim, Co-Founder and CEO at Upstage. 
+“We saw an opportunity to use Predibase to demonstrate that fine-tuning our Solar-Mini model could create a model designed to accurately catch typos and grammatical errors that even the most dedicated human might overlook.”
+
+Why off-the-shelf LLMs fall short
+Large LLMs have captivated the media’s attention and drawn significant awareness towards the potential of AI to fill business needs — particularly ones that are tedious and repetitive. Unfortunately, large, off-the-shelf LLMs like GPT-4 and Claude 3.5 Sonnet are completely unsuitable for any enterprise use due to the high cost, long deployment time, and lack of domain and task-specific knowledge.
+
+Previously, the media company experimented with using popular LLMs such as OpenAI’s models to meet their proofreading needs. These were met with limited success, as they could not accurately pinpoint errors and were prohibitively expensive at scale. They were searching for a solution that would be highly accurate, more cost effective, and could efficiently handle a large volume of articles daily — and Upstage was ready to deliver.
+
+How Upstage created a custom SLM with Predibase
+Solar-Mini is Upstage’s SLM (small language model) that delivers responses comparable to GPT-3.5, but 2.5 times faster. When initially launched, Solar-Mini consistently ranks as the top model across all categories on the Hugging Face Open LLM Leaderboard, a testament to its high quality. Designed from the ground up for efficient fine-tuning, it was the perfect candidate for creating Solar-Proofread, a custom designed SLM perfect for the specialized proofreading needed in the fast-moving journalism industry. 
+
+Upstage selected Predibase as their partner to fine-tune Solar-Mini thanks to their reputation for accuracy and rapid testing and deployment. Together, they leveraged the media company’s extensive archive for training purposes, tapping into a collection of 1,800 articles from the past three months. Two hundred additional articles were used as an evaluation set, with each article having approximately five corrections for a total of 975 corrections across the evaluation set. The team conclusively demonstrated that their model was superior to the fine-tuned GPT-4o mini for accuracy, speed, and cost effectiveness.
+
+Results: Outperforming fine-tuned GPT-4o mini
+The team was thrilled to discover that their fine-tuned model on Predibase, Solar-Proofread, outperformed both the base and a fine-tuned version of GPT-4o mini on edit suggestion correctness. Solar-Proofread was 79% accurate in identifying errors, compared to the fine-tuned GPT-4o mini model (71%) and the GPT-4o mini base model (25%).
+
+Looking more closely at the evaluation, Solar-Proofread had half as many false positives as fine-tuned GPT-4o mini.
+
+Solar-Proofread saw the fewest false positives and missing corrections.
+The Upstage team also measured how many “redundant” corrections were made, i.e. corrections that the model identified that are not in the correct answer. This category of error especially benefited from fine-tuning as both the Solar-Mini and GPT-4o mini base models identified thousands of redundant corrections.
+
+Solar-Proofread saw the fewest redundant corrections.
+With the help of Solar-Proofread, the media company completely automated their proofreading process, allowing them to reallocate valuable resources to creating new content and lowering their operational costs in the process. Furthermore, it demonstrates the value of Solar-Mini for other specialized tasks beyond proofreading, such as analyzing and responding to customer feedback or categorizing expenses for financial reports. 
+
+Conclusion
+Upstage is empowering businesses to think differently about how they integrate AI into their workflow. Solar-Proofread is a prime example of the potential of SLMs to outperform larger models, helping businesses become more efficient and save time on manual labor.
+
+“SLMs are poised to have a significant impact on how we develop models for customer use cases like proofreading,” said Kim. “We’re thrilled with the high accuracy achieved by Solar-Proofread and couldn’t have done it without Predibase’s fine-tuning.”
+
+Discover why Upstage, one of South Korea's fastest-growing AI companies, is now offering LLMs in the US by exploring our contents or following us on LinkedIn. To try fine-tuning LLMs on Predibase yourself, sign up for our 30-day free trial.

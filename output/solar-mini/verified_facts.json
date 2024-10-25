@@ -1,0 +1,68 @@
+[
+    {
+        "claimed": "After depth up scaling, the model performs worse than the base LLM.",
+        "Rating": "PANTS ON FIRE",
+        "confidence": 1.0,
+        "explanation": "The knowledge graph clearly states that Solar Mini outperformed its competitors, including Mistral 7B, after depth up scaling (DUS). The claim is not only inaccurate but makes a ridiculous assertion, given the provided evidence."
+    },
+    {
+        "claimed": "Solar Mini consistently outperformed every competitor like Llama2, Mistral 7B, Ko-Alpaca, and KULLM in all benchmarks by a wide margin.",
+        "Rating": "HALF TRUE",
+        "confidence": "0.9",
+        "explanation": "While Solar Mini outperforms its listed competitors, the claim of 'wide margin' is not supported by the knowledge graph. Benchmarks or specific comparative data are missing."
+    },
+    {
+        "claimed": "Solar Mini became the undisputed leader of all AI models on Hugging Face, surpassing every major model including GPT-4.",
+        "Rating": "MOSTLY TRUE",
+        "confidence": "0.85",
+        "explanation": "While the claim is accurate about Solar Mini surpassing other models on Hugging Face, the term 'undisputed leader' is subjective. The confidence score is not 1.0 due to the potential for new models or metrics that could challenge Solar Mini's position."
+    },
+    {
+        "claimed": "Using notably fewer parameters, Solar Mini delivers better responses than GPT-3.5 and is at least 5 times faster.",
+        "Rating": "MOSTLY TRUE",
+        "confidence": "0.9",
+        "explanation": "The claim is mostly true as the knowledge graph confirms Solar Mini delivers better responses than GPT-3.5 and is faster. However, the 'notably fewer parameters' part is not directly compared in the graph, although it is implied by the 'under 30B' size and the comparison with GPT-4."
+    },
+    {
+        "claimed": "DUS allows for a much more straightforward and efficient enlargement of smaller models than other scaling methods such as mixture-of-experts.",
+        "Rating": "MOSTLY TRUE",
+        "confidence": "0.9",
+        "explanation": "The knowledge graph states that DUS consists of depthwise scaling and continued pretraining, implying a more straightforward method compared to complex techniques like mixture-of-experts. However, the claim lacks direct comparison data, so the confidence score is not 1.0."
+    },
+    {
+        "claimed": "Continued Pre-training",
+        "Rating": "MOSTLY TRUE",
+        "confidence": 0.95,
+        "explanation": "The knowledge graph confirms that Solar Mini uses 'depthwise scaling and continued pretraining' as part of the Depth Up-scaling (DUS) method, making the claimed fact true. However, the claim does not mention depthwise scaling, which is also a component of DUS, thus requiring clarification or additional context."
+    },
+    {
+        "claimed": "Solar Mini is perfectly optimized for all RAG systems and always provides the most accurate responses.",
+        "Rating": "MOSTLY TRUE",
+        "confidence": "0.95",
+        "explanation": "The knowledge graph states that Solar Mini is optimized for all RAG systems and consistently outperforms competitors. However, the claim of 'always providing the most accurate responses' is overly broad and lacks context, as accuracy depends on specific tasks and may vary depending on the situation."
+    },
+    {
+        "claimed": "The best model you\u2019ll find under 30B",
+        "Rating": "TRUE",
+        "confidence": "1.0",
+        "explanation": "The knowledge graph states that Solar Mini has a size under 30B, directly supporting the claimed fact."
+    },
+    {
+        "claimed": "The foundational architecture of Solar Mini is based on a 32-layer Llama 2 structure, and is initialized with pre-trained weights from Mistral 7B, one of the best-performing models compatible with the Llama 2 architecture.",
+        "Rating": "TRUE",
+        "confidence": "1.0",
+        "explanation": "The claimed fact matches all details in the knowledge graph, with no missing context or discrepancies."
+    },
+    {
+        "claimed": "Our scaling method \u2018depth up-scaling\u2019 (DUS) consists of depthwise scaling and continued pretraining.",
+        "Rating": "TRUE",
+        "confidence": "1.0",
+        "explanation": "The knowledge graph directly confirms that 'depth up-scaling (DUS)' consists of 'depthwise scaling and continued pretraining'."
+    },
+    {
+        "claimed": "Solar Mini is publicly available under Apache 2.0 license.",
+        "Rating": "TRUE",
+        "confidence": "1.0",
+        "explanation": "The knowledge graph confirms that Solar Mini is publicly available under the Apache 2.0 license."
+    }
+]

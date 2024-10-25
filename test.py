@@ -1,9 +1,7 @@
 
 import unittest
+from claim import extracted_claimed_facts
 from fc import (
-    extracted_claimed_facts,
-    search_context,
-    build_kg,
     verify_facts,
     add_fact_check_to_text,
     Chat,
@@ -12,6 +10,9 @@ from fc import (
 )
 import json
 from langchain.schema import AIMessage
+
+from kg import build_kg
+from search import search_context
 
 class TestFactChecking(unittest.TestCase):
 

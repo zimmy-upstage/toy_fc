@@ -1,23 +1,16 @@
-from typing import List, Dict, Optional, Any, Union
 import json
+from typing import Any, Dict, List, Optional, Union
 
-# from langchain_groq import ChatGroq as Chat
-
-from langchain_upstage import ChatUpstage as Chat
 from langchain_community.tools import DuckDuckGoSearchResults
-from tenacity import retry, stop_after_attempt, wait_fixed, retry_if_exception_type
-
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import (
-    ChatPromptTemplate,
-    MessagesPlaceholder,
-    PromptTemplate,
-)
+from langchain_core.messages import HumanMessage
 from langchain_core.output_parsers import JsonOutputParser
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-import json
-from typing import Optional, Dict, Union, List, Any
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_upstage import ChatUpstage as Chat
+from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_fixed
 
+from claim import extracted_claimed_facts
+from kg import build_kg
+from search import search_context
 
 MAX_SEAERCH_RESULTS = 5
 
@@ -26,9 +19,10 @@ MODEL_NAME = "solar-pro"
 ddg_search = DuckDuckGoSearchResults()
 
 
-from typing import List, Dict, Any, Union, Optional
-from langchain_core.prompts import ChatPromptTemplate
+from typing import Any, Dict, List, Optional, Union
+
 from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.prompts import ChatPromptTemplate
 
 
 def verify_facts(
@@ -56,35 +50,35 @@ def verify_facts(
     kg_str = json.dumps(kg, indent=2)
     verified_facts = {}
 
-    valid_statuses = {"true", "false", "probably true", "probably false", "not sure"}
+    # TODO: change to truth-o-meter rating
+    # valid_statuses = {"true", "false", "probably true", "probably false", "not sure"}
 
     for i, fact in enumerate(claimed_facts):
         verification_result = verify_one_fact(context, kg_str, fact, llm)
 
-        status = verification_result.get("status", "not sure").lower()
-        confidence = verification_result.get("confidence", 0.0)
-        explanation = verification_result.get("explanation", "")
+        # status = verification_result.get("status", "not sure").lower()
+        # confidence = verification_result.get("confidence", 0.0)
+        # explanation = verification_result.get("explanation", "")
 
         # Validate status
-        if status not in valid_statuses:
-            status = "not sure"
+        # if status not in valid_statuses:
+        #     status = "not sure"
 
         # Validate confidence score
-        if not isinstance(confidence, (int, float)) or not (0.0 <= confidence <= 1.0):
-            confidence = 0.0
+        # if not isinstance(confidence, (int, float)) or not (0.0 <= confidence <= 1.0):
+        #     confidence = 0.0
 
-        # Apply confidence threshold
-        if confidence < confidence_threshold:
-            status = "not sure"
+        # # Apply confidence threshold
+        # if confidence < confidence_threshold:
+        #     status = "not sure"
 
         verified_facts[str(i)] = {
-            "claimed": f"{fact['entity']} {fact['relation']} {fact['value']}",
-            "status": status,
-            "confidence": confidence,
-            "explanation": explanation,
+            "claimed": fact["statement"],
+            **verification_result,
         }
 
     return verified_facts
+
 
 @retry(
     stop=stop_after_attempt(3),
@@ -97,41 +91,62 @@ def verify_one_fact(context, kg_str, fact, llm):
         [
             (
                 "system",
-                "You are an expert fact-checker. Your task is to verify a claimed fact against a knowledge graph and context information. Categorize the verification result into one of the following five categories: true, false, probably true, probably false, or not sure.",
+                """Determine the Truth-O-Meter rating for a given claim based on its alignment with a provided knowledge graph, reflecting the statement's accuracy level.
+
+Utilize the following rating system to classify the claim:
+
+- **TRUE**: The statement is accurate with no significant information omitted.
+- **MOSTLY TRUE**: The statement is accurate, but requires clarification or additional context.
+- **HALF TRUE**: The statement is partially accurate, omitting vital details or context.
+- **MOSTLY FALSE**: The statement contains some truth, but overlooks critical facts that change the overall impression.
+- **FALSE**: The statement is inaccurate.
+- **PANTS ON FIRE**: The statement is not only inaccurate but also makes a ridiculous claim.
+
+# Steps
+1. **Analyze the Claim**: Review the statement to understand its assertions.
+2. **Reasoning**: Evaluate how the statement's details align with or diverge from the facts. Consider any missing context or overlooked information.
+3. **Assign a Rating**: Based on the comparison and reasoning, choose the most appropriate Truth-O-Meter rating.
+
+# Examples
+
+**Example 1:**
+
+- **Claim**: "X is the largest producer of Y."
+- **Reasoning**: While X produces a significant amount, Z is verified as the largest, contradicting the claim.
+- **Rating**: FALSE
+
+**Example 2:**
+
+- **Claim**: "A supports B according to government statistics."
+- **Reasoning**: The claim is accurate but omits critical conditions attached to A’s support.
+- **Rating**: MOSTLY TRUE
+
+# Notes
+
+- Pay attention to the potential for missing context or partial truths.
+- Use reasoning to substantiate the chosen rating before making a conclusion.
+- Consider any relevant factual elements that exist outside the explicit nodes present in the knowledge graph.""",
             ),
             (
                 "human",
-                """Verify the following claimed fact using the provided knowledge graph and context. Categorize the verification result into one of the following:
+                """Verify the following claimed fact using the provided knowledge graph and context.
+Claimed Fact: {claim}
 
-1. **true**: Supporting evidence found in context.
-2. **false**: Contradicting evidence found in context.
-3. **probably true**: No context available, but based on your knowledge and common sense, the fact is likely true.
-4. **probably false**: No contradicting evidence in context, but based on your knowledge and common sense, the fact is likely false.
-5. **not sure**: Cannot judge due to subjectivity or unknowns.
+Knowledge Graph:
+{kg}
 
 Additionally, assign a confidence score between 0.0 and 1.0 that reflects the certainty of the categorization.
-
 Provide the result in a JSON object with the following structure:
 {{
-  "status": "<CATEGORY>",
-  "confidence": <CONFIDENCE_SCORE>,
+  "Rating": <Rating>,
+  "confidence": <Confidence>,
   "explanation": "<BRIEF_EXPLANATION>"
 }}
 
 Ensure that:
 1. The categorization is based on the information in the knowledge graph and context.
 2. The confidence score accurately reflects the certainty of the categorization.
-3. The explanation briefly justifies the verification decision and confidence score.
-    
-Claimed Fact: {entity} {relation} {value}
-
-Knowledge Graph:
-{kg}
-
-Context:
-{context}
-
-Provide the verification result:""",
+3. The explanation briefly justifies the verification decision and confidence score.""",
             ),
         ]
     )
@@ -141,11 +156,10 @@ Provide the verification result:""",
 
     verification_result = chain.invoke(
         {
-            "entity": fact["entity"],
-            "relation": fact["relation"],
-            "value": fact["value"],
+            "claim": fact["statement"],
+            # TODO: add tags
             "kg": kg_str,
-            "context": context,
+            # "context": context, #TODO : add context
         }
     )
 
@@ -182,8 +196,8 @@ def fc(
     print("\nStep 1: Extracting claimed facts")
     claimed_facts = extracted_claimed_facts(text, llm)
     print(f"Extracted {len(claimed_facts)} claimed facts:")
-    for i, fact in enumerate(claimed_facts):
-        print(f"  {i+1}. {fact['entity']} {fact['relation']} {fact['value']}")
+    # for i, fact in enumerate(claimed_facts):
+    #     print(f"  {i+1}. {fact['entity']} {fact['relation']} {fact['value']}")
 
     if context is None:
         print("\nStep 2: Searching for relevant context")
@@ -221,217 +235,6 @@ def fc(
     return verified_facts, fact_checked_text
 
 
-def extracted_claimed_facts(
-    text: str, llm: Optional[Chat] = Chat(model=MODEL_NAME)
-) -> List[Dict[str, Any]]:
-    """
-    Extract claimed facts from the given text, including entities and their relationships.
-
-    Args:
-        text (str): The input text to extract facts from.
-        llm (Optional[Chat]): The language model to use for extraction, if needed.
-
-    Returns:
-        List[Dict[str, Any]]: A list of extracted facts, where each fact is represented as a dictionary.
-    """
-
-    # Create the prompt template
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                "You are an expert fact extractor. Your task is to analyze the given text and extract a list of claimed facts, focusing on entities and their relationships. Extract precise and specific relations without categorizing them into predefined types.",
-            ),
-            (
-                "human",
-                """Extract the claimed facts from the following text, providing a list of dictionaries. Each dictionary should represent a fact and include keys for 'entity', 'relation', and 'value'. Be specific and precise with the relations.
-
-Examples:
-Input: "Albert Einstein developed the theory of relativity in 1915."
-Output: [
-    {{"entity": "Albert Einstein", "relation": "developed", "value": "theory of relativity"}},
-    {{"entity": "theory of relativity", "relation": "developed in", "value": "1915"}}
-]
-
-Input: "The Eiffel Tower, completed in 1889, stands at a height of 324 meters."
-Output: [
-    {{"entity": "Eiffel Tower", "relation": "completed in", "value": "1889"}},
-    {{"entity": "Eiffel Tower", "relation": "height", "value": "324 meters"}}
-]
-
-Now, extract facts from the following text:
-{input_text}""",
-            ),
-            (
-                "human",
-                "Respond with a JSON array of fact dictionaries only, without any additional text.",
-            ),
-        ]
-    )
-
-    # Create the output parser
-    output_parser = JsonOutputParser()
-
-    # Create the chain
-    chain = prompt | llm | output_parser
-
-    # Run the chain
-    result = chain.invoke({"input_text": text})
-
-    return result
-
-
-# Example usage:
-# facts = extracted_claimed_facts("Albert Einstein developed the theory of relativity in 1915.")
-
-
-
-def search_context(
-    text: str,
-    claimed_facts: List[Dict[str, Any]],
-    search_tool: Any,
-    llm: Optional[Chat] = Chat(model=MODEL_NAME),
-) -> str:
-    """
-    Search for relevant information using claimed facts.
-
-    Args:
-        text (str): The original input text.
-        claimed_facts (List[Dict[str, Any]]): The list of extracted claimed facts.
-        search_tool (Any): The search tool to use for finding information (e.g., DuckDuckGoSearchResults).
-        llm (Optional[Chat]): The language model to use for processing, if needed.
-
-    Returns:
-        str: The relevant context information found from the search.
-    """
-
-    # Step 1: Generate search keywords
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                "You are an expert at generating concise and relevant search keywords. Your task is to analyze the given text and extracted facts, then produce a list of 3-5 search keywords or short phrases that would be most effective for finding additional context and verification information.",
-            ),
-            (
-                "human",
-                """Given the following text and extracted facts, generate a list of 3-5 search keywords or short phrases:
-
-Text: {text}
-
-Extracted Facts:
-{facts}
-
-Provide only the keywords or short phrases, separated by commas.""",
-            ),
-        ]
-    )
-
-    facts_str = "\n".join(
-        [
-            f"- {fact['entity']} {fact['relation']} {fact['value']}"
-            for fact in claimed_facts
-        ]
-    )
-    keywords_response = llm.invoke(prompt.format(text=text, facts=facts_str))
-
-    # Parse the keywords from the response
-    keywords = [kw.strip() for kw in keywords_response.content.split(",") if kw.strip()]
-
-    # Step 2: Perform search using the generated keywords
-    search_query = " ".join(keywords)
-    search_results = search_tool.run(search_query)
-
-    # Step 3: Return the search results
-    return search_results
-
-
-
-
-@retry(
-    stop=stop_after_attempt(3),
-    wait=wait_fixed(0),
-    retry=retry_if_exception_type(Exception),
-    reraise=True,
-)
-def build_kg(
-    claimed_facts: List[Dict[str, Any]],
-    context: str,
-    llm: Optional[Chat] = Chat(model=MODEL_NAME),
-) -> Dict[str, Any]:
-    """
-    Build a knowledge graph from claimed facts and context information.
-
-    Args:
-        claimed_facts (List[Dict[str, Any]]): The list of extracted claimed facts.
-        context (str): The context information retrieved from the search.
-        llm (Optional[Chat]): The language model to use for processing, if needed.
-
-    Returns:
-        Dict[str, Any]: The constructed knowledge graph with source information.
-    """
-
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                "You are an expert in building knowledge graphs. Your task is to analyze the given context and construct a knowledge graph, using the claimed facts only as inspiration for the schema without assuming their truth. Include source information for each fact.",
-            ),
-            (
-                "human",
-                """Given the following context and claimed facts, construct a knowledge graph. Assume all information in the context is true, but use the claimed facts only as hints for the types of relations to look for.
-
-Context:
-{context}
-
-Claimed Facts (use only as schema hints):
-{claimed_facts}
-
-Construct the knowledge graph as a JSON object where keys are entities and values are dictionaries of relations. Each relation should have a "value" and a "source" (a relevant quote from the context).
-
-Example format:
-{{
-  "Entity1": {{
-    "relation1": {{
-      "value": "Value1",
-      "source": "Relevant quote from context"
-    }},
-    "relation2": {{
-      "value": "Value2",
-      "source": "Another relevant quote"
-    }}
-  }},
-  "Entity2": {{
-    ...
-  }}
-}}
-
-Ensure that:
-1. All information comes from the context, not the claimed facts.
-2. Each fact has a source quote from the context.
-3. The schema is inspired by, but not limited to, the relations in the claimed facts.
-
-Construct the knowledge graph:""",
-            ),
-        ]
-    )
-
-    output_parser = JsonOutputParser()
-    chain = prompt | llm | output_parser
-
-    facts_str = "\n".join(
-        [
-            f"- {fact['entity']} {fact['relation']} {fact['value']}"
-            for fact in claimed_facts
-        ]
-    )
-
-    kg = chain.invoke({"context": context, "claimed_facts": facts_str})
-
-    return kg
-
-
-
-
 def add_fact_check_to_text(text, verified_facts, llm=Chat(model=MODEL_NAME)):
     # First, let's create a mapping of claimed facts to their verifications
     fact_map = {fact["claimed"]: fact for fact in verified_facts.values()}
@@ -463,5 +266,3 @@ def add_fact_check_to_text(text, verified_facts, llm=Chat(model=MODEL_NAME)):
     response = llm([system_message, human_message])
 
     return response.content
-
-
